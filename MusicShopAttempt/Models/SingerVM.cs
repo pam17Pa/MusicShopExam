@@ -18,6 +18,6 @@ namespace MusicShopAttempt.Models
         [MaxLength(50)]
         public string SingerName { get; set; }
 
-        public List<SelectListItem> Product { get; set; }
+        public ICollection<SelectListItem> Product { get; set; }
     }
 }

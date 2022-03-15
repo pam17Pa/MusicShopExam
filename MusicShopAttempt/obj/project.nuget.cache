@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+rScGPSeTGY+2kff9qTdr1JqO3bk7URIGl5xxMhp9qHM5TAs7uoUZxpiiTxWpW3XzJsP07w5Zfw0XDsQau0/+g==",
+  "dgSpecHash": "Dpafzn0eIBHWdSmx2UL9SdrHdyI2Ln/9HY4wvjSc4ouHZoE0zfnTQ3BamaQMAgMCohnQw8vYsp6y1aqix4bHzA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Poli_\\source\\repos\\MusicShopAttempt\\MusicShopAttempt\\MusicShopAttempt.csproj",
+  "projectFilePath": "C:\\Users\\Poli_\\source\\repos\\MusicShopExam\\MusicShopAttempt\\MusicShopAttempt.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Poli_\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Poli_\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.13\\microsoft.aspnetcore.cryptography.internal.5.0.13.nupkg.sha512",
