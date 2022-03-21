@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -11,7 +13,10 @@ namespace MusicShopAttempt.Data
         public string Title { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
-        public string Picture { get; set; }
+        public string PictureName { get; set; }
+
+        [NotMapped]
+        public IFormFile Picture { get; set; }
         public double Price { get; set; }
         public DateTime EntryDate { get; set; }
         public StatusType Status { get; set; }

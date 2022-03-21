@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using MusicShopAttempt.Data;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -24,9 +26,11 @@ namespace MusicShopAttempt.Models
 
         public string Description { get; set; }
 
+        public string PictureName { get; set; }
 
         [Required(ErrorMessage = "This is mandatory!")]
-        public string Picture { get; set; }
+        [NotMapped]
+        public IFormFile Picture { get; set; }
 
 
         [Required(ErrorMessage = "This is mandatory!")]
