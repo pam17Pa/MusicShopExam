@@ -3,14 +3,6 @@
 @{ ViewData["Title"] = "Details"; }
 
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/bootstrap-icons.css" rel="stylesheet">
-<link rel="stylesheet" href="css/slick.css" />
-<link href="css/tooplate-little-fashion.css" rel="stylesheet">
-
 <h1>Details</h1>
 
 <section class="product-detail section-padding">
@@ -19,7 +11,7 @@
 
             <div class="col-lg-6 col-12">
                 <div class="product-thumb">
-                    <img src="@Html.DisplayFor(model => model.Picture)" class="img-fluid product-image" alt="">
+                    <img src="~/images/@Html.DisplayFor(model => model.PictureName)"  class="img-fluid product-image" alt="">
                 </div>
             </div>
 
@@ -27,7 +19,6 @@
                 <div class="product-info d-flex">
                     <div>
                         <h2 class="product-title mb-0">@Html.DisplayFor(model => model.Title)</h2>
-
                         <p class="product-p">@Html.DisplayFor(model => model.Singer.SingerName)</p>
                         <p class="product-p">@Html.DisplayFor(model => model.Category)</p>
                         <p class="product-p">@Html.DisplayFor(model => model.Genre.GenreName)</p>

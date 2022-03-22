@@ -19,7 +19,7 @@ namespace MusicShopAttempt.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly SignInManager<User> _signInManager;
-        private readonly  IWebHostEnvironment _iWebHost;
+        private readonly IWebHostEnvironment _iWebHost;
 
         public ProductsController(ApplicationDbContext context, SignInManager<User> signInManager, IWebHostEnvironment webHostEnvironment)
         {
@@ -27,33 +27,16 @@ namespace MusicShopAttempt.Controllers
             _signInManager = signInManager;
             _iWebHost = webHostEnvironment;
         }
-
-        // GET: Products
         public async Task<IActionResult> Index()
         {
-            
-            return View(await _context.Products.ToListAsync());
+
+            var applicationDbContext = _context.Products
+                .Include(p => p.Singer)
+                .Include(p => p.Genre);
+            return View(await applicationDbContext.ToListAsync());
 
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> UploadFile(IFormFile file, Product product)
-        //{
-        //    string image = Path.GetFileName(file.FileName);
-        //    if (file != null && file.Length > 0)
-        //    {
-        //        var saveImage = Path.Combine(_iWebHost.WebRootPath, "images", file.FileName);
-        //        var stream = new FileStream(saveImage, FileMode.Create);
-        //        await file.CopyToAsync(stream);
-        //        product.Picture = saveImage;
-        //        await _context.Products.AddAsync(product);
-        //        await _context.SaveChangesAsync();
-               
-        //    }
-        //    return RedirectToAction("Index");
-        //}
-
-        // GET: Products/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -73,7 +56,6 @@ namespace MusicShopAttempt.Controllers
             return View(product);
         }
 
-        // GET: Products/Create
         public IActionResult Create()
         {
             ProductVM model = new ProductVM();
@@ -89,20 +71,16 @@ namespace MusicShopAttempt.Controllers
                 Text = gn.GenreName,
                 Selected = gn.Id == model.GenreId
             }).ToList();
-
-
-            //ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id");
-            //ViewData["SingerId"] = new SelectList(_context.Singers, "Id", "Id");
             return View(model);
         }
 
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Quantity,Description,PictureName,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] Product product)
+        public async Task<IActionResult> Create([Bind("Id,Title,Quantity,Description,PictureName,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
         {
             if (ModelState.IsValid)
             {
@@ -116,11 +94,70 @@ namespace MusicShopAttempt.Controllers
                     await product.Picture.CopyToAsync(fileStream);
                 }
 
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                ProductVM model = new ProductVM();
+                model.Singer = _context.Singers.Select(sn => new SelectListItem
+                {
+                    Value = sn.Id.ToString(),
+                    Text = sn.SingerName,
+                    Selected = sn.Id == model.SingerId
+                }).ToList();
+                model.Genre = _context.Genres.Select(gn => new SelectListItem
+                {
+                    Value = gn.Id.ToString(),
+                    Text = gn.GenreName,
+                    Selected = gn.Id == model.GenreId
+                }).ToList();
             }
-            ProductVM model = new ProductVM();
+            Product dbModel = new Product
+            {
+                Title = product.Title,
+                Quantity = product.Quantity,
+                Description = product.Description,
+                Picture = product.Picture,
+                PictureName = product.PictureName,
+                Price = product.Price,
+                EntryDate = product.EntryDate,
+                Status = product.Status,
+                Promo = product.Promo,
+                Holder = product.Holder,
+                Category = product.Category,
+                SingerId = product.SingerId,
+                GenreId = product.GenreId
+            };
+
+            _context.Add(dbModel);
+            await _context.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ProductVM model = new ProductVM
+            {
+                Title = product.Title,
+                Quantity = product.Quantity,
+                Description = product.Description,
+                Picture = product.Picture,
+                PictureName = product.PictureName,
+                Price = product.Price,
+                EntryDate = product.EntryDate,
+                Status = product.Status,
+                Promo = product.Promo,
+                Holder = product.Holder,
+                Category = product.Category,
+                SingerId = product.SingerId,
+                GenreId = product.GenreId
+            };
             model.Singer = _context.Singers.Select(sn => new SelectListItem
             {
                 Value = sn.Id.ToString(),
@@ -136,62 +173,55 @@ namespace MusicShopAttempt.Controllers
             return View(model);
         }
 
-        // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", product.GenreId);
-            ViewData["SingerId"] = new SelectList(_context.Singers, "Id", "Id", product.SingerId);
-            return View(product);
-        }
-
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Quantity,Description,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Quantity,Description,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
         {
-            if (id != product.Id)
+            Product modelToDb = await _context.Products.FindAsync(id);
+            if (modelToDb == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(product);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                
+                return View(modelToDb);
             }
-            ViewData["GenreId"] = new SelectList(_context.Genres, "Id", "Id", product.GenreId);
-            ViewData["SingerId"] = new SelectList(_context.Singers, "Id", "Id", product.SingerId);
-            return View(product);
+            modelToDb.Title = product.Title;
+            modelToDb.Quantity = product.Quantity;
+            modelToDb.Description = product.Description;
+            modelToDb.Picture = product.Picture;
+            modelToDb.PictureName = product.PictureName;
+            modelToDb.Price = product.Price;
+            modelToDb.EntryDate = product.EntryDate;
+            modelToDb.Status = product.Status;
+            modelToDb.Promo= product.Promo;
+            modelToDb.Holder = product.Holder;
+            modelToDb.Category = product.Category;
+            modelToDb.SingerId = product.SingerId;
+            modelToDb.GenreId = product.GenreId;
+            try
+            {
+                _context.Update(modelToDb);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!ProductExists(modelToDb.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
         }
 
-        // GET: Products/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -211,7 +241,6 @@ namespace MusicShopAttempt.Controllers
             return View(product);
         }
 
-        // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

@@ -1,4 +1,4 @@
-﻿@model MusicShopAttempt.Data.Product
+﻿@model MusicShopAttempt.Models.ProductVM
 
 @{
     ViewData["Title"] = "Edit";
@@ -45,33 +45,31 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status" class="form-control"></select>
+                <select asp-for="Status"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.StatusType>()" class="form-control"></select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Promo" class="control-label"></label>
-                <select asp-for="Promo" class="form-control"></select>
+                <select asp-for="Promo"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.PromoType>()" class="form-control"></select>
                 <span asp-validation-for="Promo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Holder" class="control-label"></label>
-                <select asp-for="Holder" class="form-control"></select>
+                <select asp-for="Holder"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.HolderType>()" class="form-control"></select>
                 <span asp-validation-for="Holder" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category" class="form-control"></select>
+                <select asp-for="Category"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.CategoryType>()" class="form-control"></select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="SingerId" class="control-label"></label>
-                <select asp-for="SingerId" class="form-control" asp-items="ViewBag.SingerId"></select>
-                <span asp-validation-for="SingerId" class="text-danger"></span>
+                <select asp-for="SingerId" class="form-control" asp-items="@Model.Singer"></select>
             </div>
             <div class="form-group">
                 <label asp-for="GenreId" class="control-label"></label>
-                <select asp-for="GenreId" class="form-control" asp-items="ViewBag.GenreId"></select>
-                <span asp-validation-for="GenreId" class="text-danger"></span>
+                <select asp-for="GenreId" class="form-control" asp-items="@Model.Genre"></select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

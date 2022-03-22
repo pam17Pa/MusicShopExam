@@ -28,7 +28,6 @@ namespace MusicShopAttempt.Models
 
         public string PictureName { get; set; }
 
-        [Required(ErrorMessage = "This is mandatory!")]
         [NotMapped]
         public IFormFile Picture { get; set; }
 
