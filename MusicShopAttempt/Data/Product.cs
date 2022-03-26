@@ -13,12 +13,13 @@ namespace MusicShopAttempt.Data
         public string Title { get; set; }
         public int Quantity { get; set; }
         public string Description { get; set; }
-        public string PictureName { get; set; }
+        public string Picture { get; set; }
 
         [NotMapped]
-        public IFormFile Picture { get; set; }
+        public IFormFile PictureFile { get; set; }
         public double Price { get; set; }
-        public DateTime EntryDate { get; set; }
+
+        public DateTime EntryDate = DateTime.Now;
         public StatusType Status { get; set; }
         public PromoType Promo { get; set; }
         public HolderType Holder { get; set; }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShopAttempt.Data;
+using MusicShopAttempt.Models;
 
 namespace MusicShopAttempt.Controllers
 {
@@ -18,13 +19,11 @@ namespace MusicShopAttempt.Controllers
             _context = context;
         }
 
-        // GET: Genres
         public async Task<IActionResult> Index()
         {
             return View(await _context.Genres.ToListAsync());
         }
 
-        // GET: Genres/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,10 +38,13 @@ namespace MusicShopAttempt.Controllers
                 return NotFound();
             }
 
-            return View(genre);
+            GenreVM model = new GenreVM()
+            {
+                GenreName = genre.GenreName
+            };
+            return View(model);
         }
 
-        // GET: Genres/Create
         public IActionResult Create()
         {
             return View();
@@ -53,7 +55,7 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,GenreName")] Genre genre)
+        public async Task<IActionResult> Create([Bind("Id,GenreName")] GenreVM genre)
         {
             if (ModelState.IsValid)
             {
@@ -64,7 +66,6 @@ namespace MusicShopAttempt.Controllers
             return View(genre);
         }
 
-        // GET: Genres/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,7 +78,11 @@ namespace MusicShopAttempt.Controllers
             {
                 return NotFound();
             }
-            return View(genre);
+            GenreVM model = new GenreVM()
+            {
+                GenreName = genre.GenreName
+            };
+            return View(model);
         }
 
         // POST: Genres/Edit/5
@@ -85,37 +90,38 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,GenreName")] Genre genre)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,GenreName")] GenreVM genre)
         {
-            if (id != genre.Id)
+            Genre modelToDB = await _context.Genres.FindAsync(id);
+            if (modelToDB == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(genre);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!GenreExists(genre.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(modelToDB);
             }
-            return View(genre);
+            modelToDB.GenreName = genre.GenreName;
+
+            try
+            {
+                _context.Update(modelToDB);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!GenreExists(modelToDB.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
         }
 
-        // GET: Genres/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +139,6 @@ namespace MusicShopAttempt.Controllers
             return View(genre);
         }
 
-        // POST: Genres/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

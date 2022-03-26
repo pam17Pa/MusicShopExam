@@ -80,18 +80,18 @@ namespace MusicShopAttempt.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Title,Quantity,Description,PictureName,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
+        public async Task<IActionResult> Create([Bind("Id,Title,Quantity,Description,Picture,PictureFile,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
         {
             if (ModelState.IsValid)
             {
                 string rootPath = _iWebHost.WebRootPath;
-                string file = Path.GetFileNameWithoutExtension(product.Picture.FileName);
-                string ext = Path.GetExtension(product.Picture.FileName);
-                product.PictureName = file = file + DateTime.Now.ToString("yymmss") + ext;
+                string file = Path.GetFileNameWithoutExtension(product.PictureFile.FileName);
+                string ext = Path.GetExtension(product.PictureFile.FileName);
+                product.Picture = file = file + DateTime.Now.ToString("yymmss") + ext;
                 string path = Path.Combine(rootPath, "images/", file);
                 using (var fileStream = new FileStream(path, FileMode.Create))
                 {
-                    await product.Picture.CopyToAsync(fileStream);
+                    await product.PictureFile.CopyToAsync(fileStream);
                 }
 
                 ProductVM model = new ProductVM();
@@ -113,8 +113,8 @@ namespace MusicShopAttempt.Controllers
                 Title = product.Title,
                 Quantity = product.Quantity,
                 Description = product.Description,
+                PictureFile = product.PictureFile,
                 Picture = product.Picture,
-                PictureName = product.PictureName,
                 Price = product.Price,
                 EntryDate = product.EntryDate,
                 Status = product.Status,
@@ -147,8 +147,8 @@ namespace MusicShopAttempt.Controllers
                 Title = product.Title,
                 Quantity = product.Quantity,
                 Description = product.Description,
+                PictureFile = product.PictureFile,
                 Picture = product.Picture,
-                PictureName = product.PictureName,
                 Price = product.Price,
                 EntryDate = product.EntryDate,
                 Status = product.Status,
@@ -178,7 +178,7 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Quantity,Description,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Quantity,Description,PictureFile,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product, IFormFile updateImage)
         {
             Product modelToDb = await _context.Products.FindAsync(id);
             if (modelToDb == null)
@@ -187,18 +187,37 @@ namespace MusicShopAttempt.Controllers
             }
             if (!ModelState.IsValid)
             {
-                
-                return View(modelToDb);
+                //if(updateImage != null)
+                //{
+                   
+                       
+
+                //        string rootPath = _iWebHost.WebRootPath;
+                //        string file = Path.GetFileNameWithoutExtension(product.PictureFile.FileName);
+                //        string ext = Path.GetExtension(product.PictureFile.FileName);
+                //        product.Picture = file + DateTime.Now.ToString("yymmss") + ext;
+                //        string path = Path.Combine(rootPath, "images/", file);
+                //        using (var fileStream = new FileStream(path, FileMode.Create))
+                //        {
+                //            await product.PictureFile.CopyToAsync(fileStream);
+                //        }
+                //        product.Picture = updateImage.FileName;
+                    
+                //}
+                //else 
+                //{
+                    
+                //}
             }
             modelToDb.Title = product.Title;
             modelToDb.Quantity = product.Quantity;
             modelToDb.Description = product.Description;
+            modelToDb.PictureFile = product.PictureFile;
             modelToDb.Picture = product.Picture;
-            modelToDb.PictureName = product.PictureName;
             modelToDb.Price = product.Price;
             modelToDb.EntryDate = product.EntryDate;
             modelToDb.Status = product.Status;
-            modelToDb.Promo= product.Promo;
+            modelToDb.Promo = product.Promo;
             modelToDb.Holder = product.Holder;
             modelToDb.Category = product.Category;
             modelToDb.SingerId = product.SingerId;

@@ -179,9 +179,6 @@ namespace MusicShopAttempt.Data.Migrations
                     b.Property<int>("OrderDetailsId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("OrderedOn")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -230,16 +227,13 @@ namespace MusicShopAttempt.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EntryDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<int>("GenreId")
                         .HasColumnType("int");
 
                     b.Property<int>("Holder")
                         .HasColumnType("int");
 
-                    b.Property<string>("PictureName")
+                    b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<double>("Price")
@@ -328,6 +322,9 @@ namespace MusicShopAttempt.Data.Migrations
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");

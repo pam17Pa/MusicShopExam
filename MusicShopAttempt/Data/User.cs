@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace MusicShopAttempt.Data
 {
-    public class User:IdentityUser
+    public class User : IdentityUser
     {
         public string FirstName { get; set; }
         public string Surname { get; set; }
+
+        public  Role Role{ get; set; }
 
         public ICollection<Order> Order { get; set; }
     }

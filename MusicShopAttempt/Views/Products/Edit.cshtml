@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
@@ -29,8 +29,19 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <input type="hidden" asp-for="PictureFile" />
+                <img src="@("/images/" + Model.Picture)" />
+
+                <label>Upload Image</label>
+                <input type="file" name="updateImage"/>
+
+                @*<label asp-for="PictureFile" class="control-label"></label>
+                <input asp-for="PictureFile" class="form-control" accept="image/*" />
+                <span asp-validation-for="PictureFile" class="text-danger"></span>*@
+            </div>
+            <div class="form-group">
                 <label asp-for="Picture" class="control-label"></label>
-                <input asp-for="Picture" class="form-control" />
+                <input asp-for="Picture" class="form-control" readonly/>
                 <span asp-validation-for="Picture" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -45,22 +56,22 @@
             </div>
             <div class="form-group">
                 <label asp-for="Status" class="control-label"></label>
-                <select asp-for="Status"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.StatusType>()" class="form-control"></select>
+                <select asp-for="Status" asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.StatusType>()" class="form-control"></select>
                 <span asp-validation-for="Status" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Promo" class="control-label"></label>
-                <select asp-for="Promo"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.PromoType>()" class="form-control"></select>
+                <select asp-for="Promo" asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.PromoType>()" class="form-control"></select>
                 <span asp-validation-for="Promo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Holder" class="control-label"></label>
-                <select asp-for="Holder"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.HolderType>()" class="form-control"></select>
+                <select asp-for="Holder" asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.HolderType>()" class="form-control"></select>
                 <span asp-validation-for="Holder" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
-                <select asp-for="Category"  asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.CategoryType>()" class="form-control"></select>
+                <select asp-for="Category" asp-items="@Html.GetEnumSelectList<MusicShopAttempt.Data.CategoryType>()" class="form-control"></select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
             <div class="form-group">

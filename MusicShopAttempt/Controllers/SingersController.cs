@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MusicShopAttempt.Data;
+using MusicShopAttempt.Models;
 
 namespace MusicShopAttempt.Controllers
 {
@@ -18,13 +19,11 @@ namespace MusicShopAttempt.Controllers
             _context = context;
         }
 
-        // GET: Singers
         public async Task<IActionResult> Index()
         {
             return View(await _context.Singers.ToListAsync());
         }
 
-        // GET: Singers/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -39,10 +38,13 @@ namespace MusicShopAttempt.Controllers
                 return NotFound();
             }
 
-            return View(singer);
+            SingerVM model = new SingerVM()
+            {
+                SingerName = singer.SingerName
+            };
+            return View(model);
         }
 
-        // GET: Singers/Create
         public IActionResult Create()
         {
             return View();
@@ -53,7 +55,7 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SingerName")] Singer singer)
+        public async Task<IActionResult> Create([Bind("Id,SingerName")] SingerVM singer)
         {
             if (ModelState.IsValid)
             {
@@ -63,8 +65,6 @@ namespace MusicShopAttempt.Controllers
             }
             return View(singer);
         }
-
-        // GET: Singers/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -77,7 +77,12 @@ namespace MusicShopAttempt.Controllers
             {
                 return NotFound();
             }
-            return View(singer);
+
+            SingerVM model = new SingerVM()
+            {
+                SingerName = singer.SingerName
+            };
+            return View(model);
         }
 
         // POST: Singers/Edit/5
@@ -85,37 +90,38 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SingerName")] Singer singer)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SingerName")] SingerVM singer)
         {
-            if (id != singer.Id)
+            Singer modelToDB = await _context.Singers.FindAsync(id);
+            if (modelToDB == null)
             {
                 return NotFound();
             }
-
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                try
-                {
-                    _context.Update(singer);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!SingerExists(singer.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
+                return View(modelToDB);
             }
-            return View(singer);
-        }
+            modelToDB.SingerName = singer.SingerName;
 
-        // GET: Singers/Delete/5
+            try
+            {
+                _context.Update(modelToDB);
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!SingerExists(modelToDB.Id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+            return RedirectToAction("Details", new { id = id });
+        }
+        
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -133,7 +139,6 @@ namespace MusicShopAttempt.Controllers
             return View(singer);
         }
 
-        // POST: Singers/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

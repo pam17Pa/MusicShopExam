@@ -6,16 +6,17 @@
 
 
 <h1>Index</h1>
-@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+@if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
 {
 <p>
     <a asp-action="Create">Create New</a>
-</p>}
+</p>
+}
 @foreach (var item in Model)
 {
 <div class="col-mg-3 col-3 mb-3 float-left">
     <div class="product-thumb">
-            <img src="~/images/@item.PictureName" class ="product-image" alt="">
+            <img src="~/images/@item.Picture" class ="product-image" alt="">
         <div class="product-top d-flex">
             <span class="product-alert me-auto">@Html.DisplayFor(modelItem => item.Promo)</span>
         </div>
