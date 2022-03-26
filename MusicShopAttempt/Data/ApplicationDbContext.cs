@@ -17,5 +17,7 @@ namespace MusicShopAttempt.Data
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetails> OrderDetails { get; set; }
+
+      
     }
 }

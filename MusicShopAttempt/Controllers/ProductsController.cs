@@ -187,43 +187,41 @@ namespace MusicShopAttempt.Controllers
             }
             if (!ModelState.IsValid)
             {
-                //if(updateImage != null)
-                //{
-                   
-                       
-
-                //        string rootPath = _iWebHost.WebRootPath;
-                //        string file = Path.GetFileNameWithoutExtension(product.PictureFile.FileName);
-                //        string ext = Path.GetExtension(product.PictureFile.FileName);
-                //        product.Picture = file + DateTime.Now.ToString("yymmss") + ext;
-                //        string path = Path.Combine(rootPath, "images/", file);
-                //        using (var fileStream = new FileStream(path, FileMode.Create))
-                //        {
-                //            await product.PictureFile.CopyToAsync(fileStream);
-                //        }
-                //        product.Picture = updateImage.FileName;
-                    
-                //}
-                //else 
-                //{
-                    
-                //}
+                return View();
             }
-            modelToDb.Title = product.Title;
-            modelToDb.Quantity = product.Quantity;
-            modelToDb.Description = product.Description;
-            modelToDb.PictureFile = product.PictureFile;
-            modelToDb.Picture = product.Picture;
-            modelToDb.Price = product.Price;
-            modelToDb.EntryDate = product.EntryDate;
-            modelToDb.Status = product.Status;
-            modelToDb.Promo = product.Promo;
-            modelToDb.Holder = product.Holder;
-            modelToDb.Category = product.Category;
-            modelToDb.SingerId = product.SingerId;
-            modelToDb.GenreId = product.GenreId;
+            //_context.Attach(Products).State = EntityState.Modified;
+            
             try
             {
+                _context.Products.Remove(modelToDb);
+                FileInfo fileInfo = new FileInfo(product.Picture);
+                if(fileInfo.Exists)
+                {
+                    System.IO.File.Delete(product.Picture);
+                    fileInfo.Delete();
+                }
+                string rootPath = _iWebHost.WebRootPath;
+                string file = Path.GetFileNameWithoutExtension(updateImage.FileName);
+                string ext = Path.GetExtension(updateImage.FileName);
+                product.Picture = file = file + DateTime.Now.ToString("yymmss") + ext;
+                string path = Path.Combine(rootPath, "images/", file);
+                using (var fileStream = new FileStream(path, FileMode.Create))
+                {
+                    await updateImage.CopyToAsync(fileStream);
+                }
+                modelToDb.Title = product.Title;
+                modelToDb.Quantity = product.Quantity;
+                modelToDb.Description = product.Description;
+                modelToDb.PictureFile = product.PictureFile;
+                modelToDb.Picture = product.Picture;
+                modelToDb.Price = product.Price;
+                modelToDb.EntryDate = product.EntryDate;
+                modelToDb.Status = product.Status;
+                modelToDb.Promo = product.Promo;
+                modelToDb.Holder = product.Holder;
+                modelToDb.Category = product.Category;
+                modelToDb.SingerId = product.SingerId;
+                modelToDb.GenreId = product.GenreId;
                 _context.Update(modelToDb);
                 await _context.SaveChangesAsync();
             }
