@@ -2,8 +2,7 @@
 
 @{ ViewData["Title"] = "Details"; }
 
-
-<h1>Details</h1>
+<h1>Детайли</h1>
 
 <section class="product-detail section-padding">
     <div class="container">
@@ -33,7 +32,7 @@
                 </div>
 
                 <div class="product-description">
-                    <strong class="d-block mt-4 mb-2">Description</strong>
+                    <strong class="d-block mt-4 mb-2">Описание</strong>
                     <p class="lead mb-5"><p class="product-p">@Html.DisplayFor(model => model.Description)</p>
                 </div>
 
@@ -49,6 +48,6 @@
 
 
 <div>
-    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a> |
+    <a asp-action="Index">Назад</a>
 </div>

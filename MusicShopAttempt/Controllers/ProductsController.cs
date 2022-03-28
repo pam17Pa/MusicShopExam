@@ -74,11 +74,8 @@ namespace MusicShopAttempt.Controllers
             return View(model);
         }
 
-        // POST: Products/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-
         [HttpPost]
+        [Authorize]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Quantity,Description,Picture,PictureFile,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
         {
@@ -173,9 +170,6 @@ namespace MusicShopAttempt.Controllers
             return View(model);
         }
 
-        // POST: Products/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Quantity,Description,PictureFile,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product, IFormFile updateImage)
@@ -189,8 +183,6 @@ namespace MusicShopAttempt.Controllers
             {
                 return View();
             }
-            //_context.Attach(Products).State = EntityState.Modified;
-            
             try
             {
                 _context.Products.Remove(modelToDb);

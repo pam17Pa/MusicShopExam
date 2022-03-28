@@ -137,6 +137,84 @@ a:hover {
 }
 
 /*---------------------------------------
+  CUSTOM LINK               
+-----------------------------------------*/
+.custom-link {
+  color: var(--p-color);
+  font-size: var(--custom-link-font-size);
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  position: relative;
+}
+
+.custom-link i {
+  position: absolute;
+  opacity: 0;
+  bottom: 0;
+  left: 100%;
+  transition: all 0.3s;
+  line-height: normal;
+}
+
+.custom-link:hover i {
+  opacity: 1;
+  left: 101%;
+}
+
+.lead {
+  font-size: 1.5rem;
+  font-weight: var(--font-weight-thin);
+}
+
+b,
+strong {
+  font-weight: var(--font-weight-bold);
+}
+
+/*---------------------------------------
+  PRE LOADER               
+-----------------------------------------*/
+.preloader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  background: none repeat scroll 0 0 var(--white-color);
+}
+
+.spinner {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  position: relative;
+}
+
+.spinner::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45px;
+  height: 45px;
+  margin-top: -10px;
+  margin-left: -23px;
+  border-radius: 50%;
+  border: 1px solid #959595;
+  border-top-color: var(--white-color);
+  animation: spinner .9s linear infinite;
+}
+
+@keyframes spinner {
+  to {transform: rotate(360deg);}
+}
+
+/*---------------------------------------
   CUSTOM BUTTON & ICON              
 -----------------------------------------*/
 .custom-btn {
@@ -224,6 +302,25 @@ a:hover {
   font-size: 14px;
   width: 35px;
   text-transform: uppercase;
+}
+
+/*---------------------------------------
+  FULL IMAGE               
+-----------------------------------------*/
+.full-image-img {
+  display: block;
+  position: absolute;
+  z-index: -1;
+  right: 0;
+  width: 100%;
+  bottom: -120px;
+  min-width: 650px;
+}
+
+@media (min-width: 1600px) {
+  .full-image-img {
+    bottom: -200px;
+  }
 }
 
 /*---------------------------------------
@@ -696,7 +793,92 @@ button:focus:not(:focus-visible) {
   padding: 2rem 0;
 }
 
+/*---------------------------------------
+  TEAM MEMBERS               
+-----------------------------------------*/
+.team {
+  background: var(--grey-color);
+}
 
+.team-thumb {
+  background: var(--white-color);
+  position: relative;
+  border-radius: .25rem;
+  padding: 42px 32px;
+}
+
+.team-info {
+  width: 100%;
+}
+
+.custom-modal-btn {
+  background: var(--grey-color);
+  color: var(--white-color);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto 32px;
+  width: 42px;
+  height: 42px;
+}
+
+.modal-body {
+  padding: 4rem;
+}
+
+.modal-header {
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 24px;
+  margin: 32px;
+}
+
+#cart-modal .modal-header .btn-close {
+  z-index: 2;
+  margin: 22px;
+}
+
+#cart-modal .modal-header {
+  border-bottom: 0;
+  padding: 0;
+}
+
+#cart-modal .modal-footer {
+  padding: 2rem 4rem;
+}
+
+/*---------------------------------------
+  SKILL - PROGRESS BAR               
+-----------------------------------------*/
+.skill-thumb strong {
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.skill-thumb span {
+  color: var(--dark-color);
+  font-size: 24px;
+  font-weight: var(--font-weight-bold);
+}
+
+.skill-thumb .progress {
+  background: var(--white-color);
+  box-shadow: none;
+  border-radius: 100px;
+  height: 1px;
+  margin-bottom: 16px;
+}
+
+.skill-thumb .progress .progress-bar-primary {
+  background: var(--grey-color);
+}
 
 /*---------------------------------------
   PRODUCT               
@@ -709,7 +891,6 @@ button:focus:not(:focus-visible) {
   background: var(--white-color);
   position: relative;
   transition: all 0.5s ease-out;
-  float:left
 }
 
 .product-image {
