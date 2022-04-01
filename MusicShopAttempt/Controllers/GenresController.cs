@@ -40,6 +40,7 @@ namespace MusicShopAttempt.Controllers
 
             GenreVM model = new GenreVM()
             {
+                Id = genre.Id,
                 GenreName = genre.GenreName
             };
             return View(model);
@@ -59,7 +60,11 @@ namespace MusicShopAttempt.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(genre);
+                Genre dbModel = new Genre
+                {
+                    GenreName = genre.GenreName
+                };
+                _context.Add(dbModel);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -78,7 +83,7 @@ namespace MusicShopAttempt.Controllers
             {
                 return NotFound();
             }
-            GenreVM model = new GenreVM()
+            GenreVM model = new GenreVM
             {
                 GenreName = genre.GenreName
             };
@@ -102,9 +107,9 @@ namespace MusicShopAttempt.Controllers
                 return View(modelToDB);
             }
             modelToDB.GenreName = genre.GenreName;
-
             try
             {
+               
                 _context.Update(modelToDB);
                 await _context.SaveChangesAsync();
             }

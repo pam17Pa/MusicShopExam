@@ -19,7 +19,7 @@ namespace MusicShopAttempt.Data
         public IFormFile PictureFile { get; set; }
         public double Price { get; set; }
 
-        public DateTime EntryDate = DateTime.Now;
+        public DateTime EntryDate { get; set; }
         public StatusType Status { get; set; }
         public PromoType Promo { get; set; }
         public HolderType Holder { get; set; }
@@ -30,5 +30,7 @@ namespace MusicShopAttempt.Data
 
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
+
+        public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

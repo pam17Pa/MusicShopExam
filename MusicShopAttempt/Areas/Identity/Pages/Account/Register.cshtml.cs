@@ -92,12 +92,13 @@ namespace MusicShopAttempt.Areas.Identity.Pages.Account
                    UserName = Input.Email,
                    FirstName = Input.FirstName,
                    Surname = Input.LastName,
+                   Role = Role.User
                 };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
-                    var userResult =  _userManager.AddToRoleAsync(user, Role.User.ToString());
+                    var userResult = await _userManager.AddToRoleAsync(user, Role.User.ToString());
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
                     code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));

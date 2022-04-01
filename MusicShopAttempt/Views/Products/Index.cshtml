@@ -5,7 +5,6 @@
 @using Microsoft.AspNetCore.Identity;
 @{ ViewData["Title"] = "Index"; }
 
-
 <h1>Продукти</h1>
 @if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
 {
@@ -18,9 +17,9 @@
 <div class="col-mg-3 col-3 mb-3 float-left">
     <div class="product-thumb">
         <img src="~/images/@item.Picture" class="product-image" alt="">
-        @*<div class="product-top d-flex">
+        <div class="product-top d-flex">
                @Html.DisplayFor(modelItem => item.Promo)
-            </div>*@
+            </div>
         <div class="product-info d-flex">
             <div>
                 <h5 class="product-title mb-0">
@@ -34,15 +33,7 @@
 }
 
 
-@*@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-        {
 
-    <td>
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-    </td>
-    }*@
 
 
 

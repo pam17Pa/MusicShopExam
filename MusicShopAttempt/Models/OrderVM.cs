@@ -21,7 +21,7 @@ namespace MusicShopAttempt.Models
 
 
         public string UserId { get; set; }
-        public List<SelectListItem> User { get; set; }
+        public  User User { get; set; }
 
 
         public int OrderDetailsId { get; set; }

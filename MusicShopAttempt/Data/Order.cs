@@ -8,12 +8,13 @@ namespace MusicShopAttempt.Data
     public class Order
     {
         public int Id { get; set; }
-        public DateTime OrderedOn = DateTime.Now;
+
+        public DateTime OrderedOn { get; set; }
+
 
         public string UserId { get; set; }
         public User User { get; set; }
 
-        public int OrderDetailsId { get; set; }
-        public OrderDetails OrderDetails { get; set; }
+        public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

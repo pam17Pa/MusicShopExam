@@ -59,11 +59,12 @@ html {
 }
 
 body {
-  /* Margin bottom by footer height */
-  margin-bottom: 60px;
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+    background-image: linear-gradient(to bottom right, #5F9EA0, #BDB76B);
 }
 .footer {
-  position: relative;
+  position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;

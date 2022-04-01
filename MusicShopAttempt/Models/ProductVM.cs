@@ -66,5 +66,10 @@ namespace MusicShopAttempt.Models
 
         public int GenreId { get; set; }
         public List<SelectListItem> Genre { get; set; }
+
+        public int QuantityOrder { get; set; }
+        public string UserId { get; set; }
+        //public ICollection<Order> Order { get; set; }
+        //public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

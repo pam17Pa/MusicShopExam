@@ -40,6 +40,7 @@ namespace MusicShopAttempt.Controllers
 
             SingerVM model = new SingerVM()
             {
+                Id = singer.Id,
                 SingerName = singer.SingerName
             };
             return View(model);
@@ -59,7 +60,11 @@ namespace MusicShopAttempt.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(singer);
+                Singer model = new Singer
+                {
+                    SingerName = singer.SingerName
+                };
+                _context.Add(model);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
@@ -102,7 +107,6 @@ namespace MusicShopAttempt.Controllers
                 return View(modelToDB);
             }
             modelToDB.SingerName = singer.SingerName;
-
             try
             {
                 _context.Update(modelToDB);
@@ -119,7 +123,7 @@ namespace MusicShopAttempt.Controllers
                     throw;
                 }
             }
-            return RedirectToAction("Details", new { id = id });
+            return RedirectToAction("Details", new { id = singer.Id });
         }
         
         public async Task<IActionResult> Delete(int? id)

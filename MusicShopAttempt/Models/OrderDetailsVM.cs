@@ -12,20 +12,17 @@ namespace MusicShopAttempt.Models
     {
         [Key]
         public int Id { get; set; }
-         
 
         [Required(ErrorMessage = "This is mandatory!")]
         public int Quantity { get; set; }
 
-
         [Required(ErrorMessage = "This is mandatory!")]
         public double Price { get; set; }
 
-
         public int ProductId { get; set; }
-        public List<SelectListItem> Product { get; set; }
 
+        public int OrderId { get; set; }
+        public Order Order { get; set; }
 
-        public ICollection<SelectListItem> Order { get; set; }
     }
 }

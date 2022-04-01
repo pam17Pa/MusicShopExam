@@ -7,11 +7,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShopAttempt.Data;
 
-namespace MusicShopAttempt.Data.Migrations
+namespace MusicShopAttempt.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220309162322_Initial...")]
-    partial class Initial
+    [Migration("20220401052928_OrderMod")]
+    partial class OrderMod
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -178,23 +178,15 @@ namespace MusicShopAttempt.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("OrderDetailsId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("OrderedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("UserId1")
+                    b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OrderDetailsId");
-
-                    b.HasIndex("UserId1");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -206,10 +198,21 @@ namespace MusicShopAttempt.Data.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("int");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("ProductId");
 
@@ -328,6 +331,9 @@ namespace MusicShopAttempt.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");
 
+                    b.Property<int>("Role")
+                        .HasColumnType("int");
+
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("nvarchar(max)");
 
@@ -407,28 +413,28 @@ namespace MusicShopAttempt.Data.Migrations
 
             modelBuilder.Entity("MusicShopAttempt.Data.Order", b =>
                 {
-                    b.HasOne("MusicShopAttempt.Data.OrderDetails", "OrderDetails")
-                        .WithMany("Order")
-                        .HasForeignKey("OrderDetailsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("MusicShopAttempt.Data.User", "User")
                         .WithMany("Order")
-                        .HasForeignKey("UserId1");
-
-                    b.Navigation("OrderDetails");
+                        .HasForeignKey("UserId");
 
                     b.Navigation("User");
                 });
 
             modelBuilder.Entity("MusicShopAttempt.Data.OrderDetails", b =>
                 {
+                    b.HasOne("MusicShopAttempt.Data.Order", "Order")
+                        .WithMany("OrderDetails")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("MusicShopAttempt.Data.Product", "Product")
-                        .WithMany()
+                        .WithMany("OrderDetails")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Order");
 
                     b.Navigation("Product");
                 });
@@ -457,9 +463,14 @@ namespace MusicShopAttempt.Data.Migrations
                     b.Navigation("Product");
                 });
 
-            modelBuilder.Entity("MusicShopAttempt.Data.OrderDetails", b =>
+            modelBuilder.Entity("MusicShopAttempt.Data.Order", b =>
                 {
-                    b.Navigation("Order");
+                    b.Navigation("OrderDetails");
+                });
+
+            modelBuilder.Entity("MusicShopAttempt.Data.Product", b =>
+                {
+                    b.Navigation("OrderDetails");
                 });
 
             modelBuilder.Entity("MusicShopAttempt.Data.Singer", b =>

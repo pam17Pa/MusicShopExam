@@ -1,24 +1,26 @@
-﻿@model MusicShopAttempt.Data.Genre
+﻿@model MusicShopAttempt.Models.GenreVM
+@inject SignInManager<User> signInManager;
+@inject UserManager<User> userInManager;
+@using Microsoft.AspNetCore.Identity;
+@using MusicShopAttempt.Data;
 
-@{
-    ViewData["Title"] = "Details";
-}
+@{ ViewData["Title"] = "Details"; }
 
-<h1>Details</h1>
+<h1>Детайли</h1>
 
 <div>
-    <h4>Genre</h4>
+    <h4>Жанр</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.GenreName)
+        <dt class="col-sm-2">
+            Жанр
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.GenreName)
         </dd>
     </dl>
 </div>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Назад</a>
 </div>

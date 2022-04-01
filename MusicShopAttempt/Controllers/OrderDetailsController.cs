@@ -21,7 +21,7 @@ namespace MusicShopAttempt.Controllers
         // GET: OrderDetails
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.OrderDetails.Include(o => o.Product);
+            var applicationDbContext = _context.OrderDetails.Include(o => o.Order).Include(o => o.Product);
             return View(await applicationDbContext.ToListAsync());
         }
 
@@ -34,6 +34,7 @@ namespace MusicShopAttempt.Controllers
             }
 
             var orderDetails = await _context.OrderDetails
+                .Include(o => o.Order)
                 .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderDetails == null)
@@ -47,6 +48,7 @@ namespace MusicShopAttempt.Controllers
         // GET: OrderDetails/Create
         public IActionResult Create()
         {
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id");
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
             return View();
         }
@@ -56,7 +58,7 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Quantity,Price,ProductId")] OrderDetails orderDetails)
+        public async Task<IActionResult> Create([Bind("Id,Quantity,Price,ProductId,OrderId")] OrderDetails orderDetails)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +66,7 @@ namespace MusicShopAttempt.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", orderDetails.OrderId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", orderDetails.ProductId);
             return View(orderDetails);
         }
@@ -81,6 +84,7 @@ namespace MusicShopAttempt.Controllers
             {
                 return NotFound();
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", orderDetails.OrderId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", orderDetails.ProductId);
             return View(orderDetails);
         }
@@ -90,7 +94,7 @@ namespace MusicShopAttempt.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity,Price,ProductId")] OrderDetails orderDetails)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Quantity,Price,ProductId,OrderId")] OrderDetails orderDetails)
         {
             if (id != orderDetails.Id)
             {
@@ -117,6 +121,7 @@ namespace MusicShopAttempt.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["OrderId"] = new SelectList(_context.Orders, "Id", "Id", orderDetails.OrderId);
             ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", orderDetails.ProductId);
             return View(orderDetails);
         }
@@ -130,6 +135,7 @@ namespace MusicShopAttempt.Controllers
             }
 
             var orderDetails = await _context.OrderDetails
+                .Include(o => o.Order)
                 .Include(o => o.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (orderDetails == null)

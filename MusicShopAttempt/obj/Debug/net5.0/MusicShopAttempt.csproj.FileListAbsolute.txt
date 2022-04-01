@@ -332,16 +332,6 @@ C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razo
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Genres\Index.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\OrderDetails\Create.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\OrderDetails\Delete.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\OrderDetails\Details.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\OrderDetails\Edit.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\OrderDetails\Index.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Create.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Delete.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Details.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Edit.cshtml.g.cs
-C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Index.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\Create.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\Delete.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\Details.cshtml.g.cs
@@ -373,3 +363,8 @@ C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razo
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\ConfirmEmail.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Create.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Delete.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Details.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Edit.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Orders\Index.cshtml.g.cs

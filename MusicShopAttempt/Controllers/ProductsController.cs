@@ -52,8 +52,24 @@ namespace MusicShopAttempt.Controllers
             {
                 return NotFound();
             }
-
-            return View(product);
+            ProductVM model = new ProductVM()
+            {
+                Id = (int)id,
+                Title = product.Title,
+                Quantity = product.Quantity,
+                Description = product.Description,
+                PictureFile = product.PictureFile,
+                Picture = product.Picture,
+                Price = product.Price,
+                EntryDate = DateTime.Now,
+                Status = product.Status,
+                Promo = product.Promo,
+                Holder = product.Holder,
+                Category = product.Category,
+                SingerId = product.SingerId,
+                GenreId = product.GenreId
+            };
+            return View(model);
         }
 
         public IActionResult Create()
@@ -113,7 +129,7 @@ namespace MusicShopAttempt.Controllers
                 PictureFile = product.PictureFile,
                 Picture = product.Picture,
                 Price = product.Price,
-                EntryDate = product.EntryDate,
+                EntryDate = DateTime.Now,
                 Status = product.Status,
                 Promo = product.Promo,
                 Holder = product.Holder,
@@ -147,7 +163,7 @@ namespace MusicShopAttempt.Controllers
                 PictureFile = product.PictureFile,
                 Picture = product.Picture,
                 Price = product.Price,
-                EntryDate = product.EntryDate,
+                EntryDate = DateTime.Now,
                 Status = product.Status,
                 Promo = product.Promo,
                 Holder = product.Holder,
@@ -264,5 +280,13 @@ namespace MusicShopAttempt.Controllers
         {
             return _context.Products.Any(e => e.Id == id);
         }
+        //public IActionResult<Product> GenreFilter()
+        //{
+        //    var kpopSongs = _context.Products
+        //        .Include(p => p.Singer)
+        //        .Include(p => p.Genre)
+        //        .Where(p => p.Genre.GenreName == "kpop");
+        //    return kpopSongs.ToList();
+        //}
     }
 }
