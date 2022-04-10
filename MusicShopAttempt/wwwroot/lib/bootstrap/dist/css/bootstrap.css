@@ -59,7 +59,7 @@ body {
     font-weight: 400;
     line-height: 1.5;
     text-align: left;
-    
+    color: #BADEFC;
 }
 
 [tabindex="-1"]:focus {
@@ -206,7 +206,6 @@ svg {
 
 table {
     border-collapse: collapse;
-    border: solid 5px red;
 }
 
 caption {
@@ -4278,7 +4277,7 @@ input[type="button"].btn-block {
 
         .nav-tabs .nav-link.active,
         .nav-tabs .nav-item.show .nav-link {
-            color: #495057;
+            color: #EEFCCE;
             background-color: #fff;
             border-color: #dee2e6 #dee2e6 #fff;
         }
@@ -4295,7 +4294,7 @@ input[type="button"].btn-block {
 
     .nav-pills .nav-link.active,
     .nav-pills .show > .nav-link {
-        color: #fff;
+        color: #BADEFC;
         background-color: #007bff;
     }
 
@@ -4332,6 +4331,8 @@ input[type="button"].btn-block {
     -ms-flex-pack: justify;
     justify-content: space-between;
     padding: 0.5rem 1rem;
+    color: #EEFCCE;
+    /*background-color: #34495E*/
 }
 
     .navbar > .container,
@@ -4354,6 +4355,7 @@ input[type="button"].btn-block {
     font-size: 1.25rem;
     line-height: inherit;
     white-space: nowrap;
+    color: #BADEFC;
 }
 
     .navbar-brand:hover, .navbar-brand:focus {
@@ -4373,6 +4375,7 @@ input[type="button"].btn-block {
     .navbar-nav .nav-link {
         padding-right: 0;
         padding-left: 0;
+        color: #BADEFC
     }
 
     .navbar-nav .dropdown-menu {
@@ -4384,6 +4387,7 @@ input[type="button"].btn-block {
     display: inline-block;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
+   
 }
 
 .navbar-collapse {
@@ -4655,7 +4659,7 @@ input[type="button"].btn-block {
     }
 
 .navbar-light .navbar-brand {
-    color: rgba(0, 0, 0, 0.9);
+    color: #BADEFC
 }
 
     .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {
@@ -4663,7 +4667,7 @@ input[type="button"].btn-block {
     }
 
 .navbar-light .navbar-nav .nav-link {
-    color: rgba(0, 0, 0, 0.5);
+    color: #BADEFC
 }
 
     .navbar-light .navbar-nav .nav-link:hover, .navbar-light .navbar-nav .nav-link:focus {
@@ -4703,7 +4707,7 @@ input[type="button"].btn-block {
         }
 
 .navbar-dark .navbar-brand {
-    color: #fff;
+    color: #BADEFC
 }
 
     .navbar-dark .navbar-brand:hover, .navbar-dark .navbar-brand:focus {

@@ -54,9 +54,8 @@ namespace MusicShopAttempt.Controllers
             }
             ProductVM model = new ProductVM()
             {
-                Id = (int)id,
+                Id=product.Id,
                 Title = product.Title,
-                Quantity = product.Quantity,
                 Description = product.Description,
                 PictureFile = product.PictureFile,
                 Picture = product.Picture,
@@ -67,7 +66,10 @@ namespace MusicShopAttempt.Controllers
                 Holder = product.Holder,
                 Category = product.Category,
                 SingerId = product.SingerId,
-                GenreId = product.GenreId
+                SingerNow = product.Singer,
+                GenreId = product.GenreId,
+                GenreNow = product.Genre,
+                QuantityOrder = 1
             };
             return View(model);
         }
@@ -124,7 +126,6 @@ namespace MusicShopAttempt.Controllers
             Product dbModel = new Product
             {
                 Title = product.Title,
-                Quantity = product.Quantity,
                 Description = product.Description,
                 PictureFile = product.PictureFile,
                 Picture = product.Picture,
@@ -158,7 +159,6 @@ namespace MusicShopAttempt.Controllers
             ProductVM model = new ProductVM
             {
                 Title = product.Title,
-                Quantity = product.Quantity,
                 Description = product.Description,
                 PictureFile = product.PictureFile,
                 Picture = product.Picture,
@@ -218,7 +218,6 @@ namespace MusicShopAttempt.Controllers
                     await updateImage.CopyToAsync(fileStream);
                 }
                 modelToDb.Title = product.Title;
-                modelToDb.Quantity = product.Quantity;
                 modelToDb.Description = product.Description;
                 modelToDb.PictureFile = product.PictureFile;
                 modelToDb.Picture = product.Picture;
@@ -280,6 +279,7 @@ namespace MusicShopAttempt.Controllers
         {
             return _context.Products.Any(e => e.Id == id);
         }
+
         //public IActionResult<Product> GenreFilter()
         //{
         //    var kpopSongs = _context.Products

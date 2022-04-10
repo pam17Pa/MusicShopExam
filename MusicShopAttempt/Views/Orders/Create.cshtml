@@ -19,6 +19,16 @@
                 <span asp-validation-for="OrderedOn" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Total" class="control-label"></label>
+                <input asp-for="Total" class="form-control" />
+                <span asp-validation-for="Total" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="Finalised" /> @Html.DisplayNameFor(model => model.Finalised)
+                </label>
+            </div>
+            <div class="form-group">
                 <label asp-for="UserId" class="control-label"></label>
                 <select asp-for="UserId" class ="form-control" asp-items="ViewBag.UserId"></select>
             </div>

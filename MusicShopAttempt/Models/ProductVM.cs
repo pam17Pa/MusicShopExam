@@ -19,10 +19,6 @@ namespace MusicShopAttempt.Models
         [Required(ErrorMessage = "This is mandatory!")]
         public string Title { get; set; }
 
-
-        [Required(ErrorMessage = "This is mandatory!")]
-        public int Quantity { get; set; }
-
         public string Description { get; set; }
 
         public string Picture { get; set; }
@@ -61,14 +57,18 @@ namespace MusicShopAttempt.Models
 
 
         public int SingerId { get; set; }
+        public Singer SingerNow { get; set; }
         public List<SelectListItem> Singer { get; set; }
 
 
         public int GenreId { get; set; }
+        public Genre GenreNow { get; set; }
         public List<SelectListItem> Genre { get; set; }
 
         public int QuantityOrder { get; set; }
         public string UserId { get; set; }
+
+
         //public ICollection<Order> Order { get; set; }
         //public ICollection<OrderDetails> OrderDetails { get; set; }
     }

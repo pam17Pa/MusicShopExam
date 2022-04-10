@@ -17,6 +17,12 @@
                 @Html.DisplayNameFor(model => model.OrderedOn)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.Total)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Finalised)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.User)
             </th>
             <th></th>
@@ -27,6 +33,12 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.OrderedOn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Finalised)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.User.Id)

@@ -17,9 +17,6 @@
                 @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Product)
             </th>
             <th>
@@ -33,9 +30,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Quantity)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Product.Id)
@@ -52,3 +46,4 @@
 }
     </tbody>
 </table>
+<a class="btn-light" asp-action="Calculate" asp-route-orderId="@Model.First().OrderId">Поръчай</a>

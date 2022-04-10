@@ -11,6 +11,8 @@ namespace MusicShopAttempt.Data
 
         public DateTime OrderedOn { get; set; }
 
+        public double Total { get; set; }
+        public bool Finalised { get; set; }
 
         public string UserId { get; set; }
         public User User { get; set; }
