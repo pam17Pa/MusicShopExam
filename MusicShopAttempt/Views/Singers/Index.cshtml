@@ -6,34 +6,37 @@
 
 @{ ViewData["Title"] = "Index"; }
 
-<h1>Index</h1>
+<h1>Изпълнители</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
+@if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+{
+<a asp-action="Create"><i class="fa fa-2x fa-plus-square" aria-hidden="true"></i></a>
+}
+
+<table class="table table-borderless table-striped table-dark">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SingerName)
+                Изпълнител
             </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach (var item in Model)
         {
-<tr>
-    <td>
-        @Html.DisplayFor(modelItem => item.SingerName)
-    </td>
-    <td>
-        @if(signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-        {
-        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> 
-        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-        }
-    </td>
-</tr>}
+           <tr>
+             <td>
+                @Html.DisplayFor(modelItem => item.SingerName)
+             </td>
+             <td>
+                 @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                 {
+                      <a asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-2x fa-pencil" aria-hidden="true"></i></a>
+                      <a asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
+                  }
+                 <a asp-action="Details" asp-route-id="@item.Id"><i class="fa fa-2x fa-info-circle" aria-hidden="true"></i></a>
+             </td>
+           </tr>
+         }
     </tbody>
 </table>

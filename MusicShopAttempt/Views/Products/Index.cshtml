@@ -9,28 +9,22 @@
 @if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
 {
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create"><i class="fa fa-2x fa-plus-square" aria-hidden="true"></i></a>
 </p>
 }
 @foreach (var item in Model)
 {
-<div class="col-mg-3 col-3 mb-3 float-left">
-    <div class="product-thumb">
-        <img src="~/images/@item.Picture" class="product-image" alt="">
-        <div class="product-top d-flex">
-               @Html.DisplayFor(modelItem => item.Promo)
-            </div>
-        <div class="product-info d-flex">
-            <div>
-                <h5 class="product-title mb-0">
-                    <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
-                </h5>
-            </div>
-            <small class="product-price text-muted ms-auto">@Html.DisplayFor(modelItem => item.Price)</small>
-        </div>
+<div class="card">
+    <img class="card-img-top" src="~/images/@item.Picture" alt="Card image">
+    <div class="card-body">
+        <h5 class="card-title">
+            <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+        </h5>
+        <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
     </div>
 </div>
 }
+
 
 
 

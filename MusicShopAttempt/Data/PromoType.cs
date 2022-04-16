@@ -7,6 +7,6 @@ namespace MusicShopAttempt.Data
 {
     public enum PromoType
     {
-        fifteen, twenty, thirty
+        без, петнадесет, двадесет, тридесет
     }
 }

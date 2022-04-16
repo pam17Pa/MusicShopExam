@@ -60,6 +60,7 @@ body {
     line-height: 1.5;
     text-align: left;
     color: #BADEFC;
+    background-image: linear-gradient(to bottom right, #08415C, #BADEFC);
 }
 
 [tabindex="-1"]:focus {
@@ -550,7 +551,6 @@ pre {
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
-    
 }
 
 @media (min-width: 576px) {
@@ -1885,7 +1885,7 @@ pre {
 .table-dark,
 .table-dark > th,
 .table-dark > td {
-    background-color: #c6c8ca;
+    background-color: #062f63;
 }
 
     .table-dark th,
@@ -1901,7 +1901,7 @@ pre {
 
     .table-hover .table-dark:hover > td,
     .table-hover .table-dark:hover > th {
-        background-color: #b9bbbe;
+        background-color: #abdbe3;
     }
 
 .table-active,
@@ -1933,7 +1933,7 @@ pre {
 
 .table-dark {
     color: #fff;
-    background-color: #343a40;
+    background-color: #063970;
 }
 
     .table-dark th,
@@ -4332,7 +4332,7 @@ input[type="button"].btn-block {
     justify-content: space-between;
     padding: 0.5rem 1rem;
     color: #EEFCCE;
-    /*background-color: #34495E*/
+    background-color: #08415C
 }
 
     .navbar > .container,
@@ -4387,7 +4387,6 @@ input[type="button"].btn-block {
     display: inline-block;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-   
 }
 
 .navbar-collapse {
@@ -4760,12 +4759,17 @@ input[type="button"].btn-block {
     display: flex;
     -ms-flex-direction: column;
     flex-direction: column;
-    min-width: 0;
+    width: 29%;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
     word-wrap: break-word;
-    background-color: #fff;
+    background-color: rgba(8, 65, 92, 0.5);
     background-clip: border-box;
+    float: left;
     border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 0.25rem;
+    box-shadow: 10px 15px rgba(0,0,0,0.4)
 }
 
     .card > hr {
@@ -10834,43 +10838,6 @@ a.text-dark:hover, a.text-dark:focus {
         border-color: #dee2e6;
     }
 
-    .product-thumb {
-        background: var(--white-color);
-        position: relative;
-        transition: all 0.5s ease-out;
-        float: left
-    }
-
-    .product-image {
-        transition: all 0.5s ease-out;
-    }
-
-    .product-thumb:hover .product-image {
-        box-shadow: 0 1rem 3rem rgba(0,0,0,.175);
-    }
-
-    .product-top {
-        position: absolute;
-        top: 8px;
-        left: 16px;
-        margin: 20px;
-    }
-
-    .product-info {
-        padding: 30px 20px;
-    }
-
-    .product-description,
-    .product-cart-thumb {
-        padding: 0 20px;
-    }
-
-    .product-icon {
-        color: var(--white-color);
-    }
-
-    .product-p {
-        font-size: var(--product-link-font-size);
-    }
+  
 }
 /*# sourceMappingURL=bootstrap.css.map */

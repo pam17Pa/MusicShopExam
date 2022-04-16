@@ -11,7 +11,7 @@
     <title>@ViewData["Title"] - Хармония</title>
     <link asp-append-version="true" rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link asp-append-version="true" rel="stylesheet" href="~/css/site.css" />
-
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
 </head>
 <body>
     <header>
@@ -38,28 +38,30 @@
                         </li>
                         @if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
                         {
-                            <li class="nav-item">
-                                <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">Поръчки</a>
-                            </li>
-                        }
-
+            <li class="nav-item">
+                <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">Поръчки</a>
+            </li>}
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div>
+        <img id="leftBanner" src="~/images/bannerLeft.jpeg" />
+        <img id="rightBanner" src="~/images/bannerRight.jpg" />
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
     </div>
-
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2022 - Хармония
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

@@ -61,12 +61,57 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: linear-gradient(to bottom right, #08415C, #BADEFC);
+   
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    white-space: nowrap;
+    background-color: #BADEFC;
+    margin-top: 2%;
+    line-height: 60px; /* Vertically center the text there */
+}
+#leftBanner {
+    width: 8%;
+    height: 1000px;
+    object-fit: cover;
+    margin-right: 2%;
+    margin-left: 2%;
+    margin-bottom: 2%;
+    float: left;
+    position: relative;
+    -webkit-animation: mover 2s infinite alternate;
+    animation: mover 2s infinite alternate;
+}
+#rightBanner {
+    width: 8%;
+    height: 1000px;
+    object-fit: cover;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 2%;
+    float: right;
+    position: relative;
+    -webkit-animation: mover 2s infinite alternate;
+    animation: mover 2s infinite alternate;
+}
+@-webkit-keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes mover {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-15px);
+    }
 }

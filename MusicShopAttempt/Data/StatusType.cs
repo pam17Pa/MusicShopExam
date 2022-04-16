@@ -7,6 +7,6 @@ namespace MusicShopAttempt.Data
 {
     public enum StatusType
     {
-        InStock, DeliveryRequest, OutOfStock
+        Наличен, Заявка
     }
 }

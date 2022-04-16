@@ -11,30 +11,28 @@
 <form class="row" asp-controller="OrderDetails" asp-action="Create" method="post">
 
     <div class="col-lg-6 col-12">
-        <div class="product-thumb">
-            <img src="~/images/@Html.DisplayFor(model => model.Picture)" class="img-fluid product-image" alt="">
+        <div>
+            <img class="card-img-top" src="~/images/@Html.DisplayFor(model => model.Picture)" alt="">
         </div>
     </div>
 
     <div class="col-lg-6 col-12">
-        <div class="product-info d-flex">
+        <div class=" d-flex">
             <div>
-                <h2 class="product-title mb-0">@Html.DisplayFor(model => model.Title)</h2>
-                <p class="product-p">@Html.DisplayFor(model => model.SingerNow.SingerName)</p>
-                <p class="product-p">@Html.DisplayFor(model => model.Category)</p>
-                <p class="product-p">@Html.DisplayFor(model => model.GenreNow.GenreName)</p>
-                <p class="product-p">@Html.DisplayFor(model => model.Status)</p>
-                <p class="product-p">@Html.DisplayFor(model => model.Holder)</p>
-                <p class="product-p">@Html.DisplayFor(model => model.EntryDate)</p>
-
+                <h2 class="mb-0">@Html.DisplayFor(model => model.Title)</h2>
+                <p>@Html.DisplayFor(model => model.Price)</p>
+                <p>@Html.DisplayFor(model => model.SingerNow.SingerName)</p>
+                <p>@Html.DisplayFor(model => model.Category)</p>
+                <p>@Html.DisplayFor(model => model.GenreNow.GenreName)</p>
+                <p>@Html.DisplayFor(model => model.Status)</p>
+                <p>@Html.DisplayFor(model => model.Holder)</p>
+                <p>@Html.DisplayFor(model => model.EntryDate)</p>
             </div>
-
-            <small class="product-price text-muted ms-auto mt-auto mb-5">@Html.DisplayFor(model => model.Price)</small>
         </div>
 
-        <div class="product-description">
+        <div>
             <strong class="d-block mt-4 mb-2">Описание</strong>
-            <p class="lead mb-5"><p class="product-p">@Html.DisplayFor(model => model.Description)</p>
+            <p class="lead mb-5">@Html.DisplayFor(model => model.Description)</p>
         </div>
         <input type="submit" value="Добави в кошницата"/>
         <button value="Finalise" asp-controller="OrderDetails" asp-action="Index">Поръчай</button>
@@ -44,8 +42,9 @@
 
 <div>
     @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
-    {
-<a asp-action="Edit" asp-route-id="@Model.Id">Редактиране</a>
-                <a asp-action="Delete" asp-route-id="@Model.Id"> Изтриване </a>}
-    <a asp-action="Index">Назад</a>
+     {
+       <a asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-2x fa-pencil" aria-hidden="true"></i></a>
+       <a asp-action="Delete" asp-route-id="@Model.Id"><i class="fa fa-2x fa-trash" aria-hidden="true"></i></a>
+     }
+       <a asp-action="Index"><i class="fa fa-2x fa-reply" aria-hidden="true"></i></a>
 </div>
