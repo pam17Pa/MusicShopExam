@@ -65,7 +65,7 @@ namespace MusicShopAttempt.Models
         public Genre GenreNow { get; set; }
         public List<SelectListItem> Genre { get; set; }
 
-        public int QuantityOrder { get; set; }
+        public int Quantity { get; set; }
         public string UserId { get; set; }
 
 

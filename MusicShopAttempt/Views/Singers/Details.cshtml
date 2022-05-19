@@ -1,8 +1,10 @@
 ﻿@model MusicShopAttempt.Models.SingerVM
+@inject SignInManager<User> signInManager;
+@inject UserManager<User> userInManager;
+@using Microsoft.AspNetCore.Identity;
+@using MusicShopAttempt.Data;
 
-@{
-    ViewData["Title"] = "Details";
-}
+@{ ViewData["Title"] = "Details"; }
 
 <h1>Детайли</h1>
 
@@ -13,12 +15,15 @@
         <dt class="col-sm-2">
             Изпълнител
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SingerName)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-controller="Singers" asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-2x fa-pencil" aria-hidden="true"></i></a> |
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+<a asp-action="Edit" asp-route-id="@Model.Id"><i class="fa fa-2x fa-pencil" aria-hidden="true"></i></a>}
+
     <a asp-action="Index"><i class="fa fa-2x fa-reply" aria-hidden="true"></i></a>
 </div>

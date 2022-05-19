@@ -19,23 +19,30 @@
     <div class="col-lg-6 col-12">
         <div class=" d-flex">
             <div>
-                <h2 class="mb-0">@Html.DisplayFor(model => model.Title)</h2>
-                <p>@Html.DisplayFor(model => model.Price)</p>
-                <p>@Html.DisplayFor(model => model.SingerNow.SingerName)</p>
-                <p>@Html.DisplayFor(model => model.Category)</p>
-                <p>@Html.DisplayFor(model => model.GenreNow.GenreName)</p>
-                <p>@Html.DisplayFor(model => model.Status)</p>
-                <p>@Html.DisplayFor(model => model.Holder)</p>
-                <p>@Html.DisplayFor(model => model.EntryDate)</p>
+                <input type="hidden" asp-for="Id" />
+                <input asp-for="Title" class="form-control" readonly />
+                <input asp-for="Price" class="form-control" readonly />
+                <input asp-for="SingerNow.SingerName" class="form-control" readonly />
+                <input asp-for="Category" class="form-control" readonly />
+                <input asp-for="GenreNow.GenreName" class="form-control" readonly />
+                <input asp-for="Status" class="form-control" readonly />
+                <input asp-for="Holder" class="form-control" readonly />
+                <input asp-for="EntryDate" class="form-control" readonly />
             </div>
         </div>
 
         <div>
             <strong class="d-block mt-4 mb-2">Описание</strong>
-            <p class="lead mb-5">@Html.DisplayFor(model => model.Description)</p>
+            <input asp-for="Description" class="form-control" readonly />
         </div>
-        <input type="submit" value="Добави в кошницата"/>
-        <button value="Finalise" asp-controller="OrderDetails" asp-action="Index">Поръчай</button>
+        <label asp-for="Quantity" class="control-label">Количество</label>
+        <input asp-for="Quantity" type="number" maxlength="4" class="form-control" />
+        <span asp-validation-for="Quantity" class="text-danger"></span>
+        @if (User.Identity.IsAuthenticated)
+        {
+    <input type="submit" value="Добави в кошницата" />
+                    <a class="btn btn-outline-dark" value="Finalise" asp-controller="OrderDetails" asp-action="Index">Поръчай</a>}
+
     </div>
 </form>
 

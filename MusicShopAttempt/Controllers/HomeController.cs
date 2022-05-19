@@ -20,6 +20,8 @@ namespace MusicShopAttempt.Controllers
 
         public IActionResult Index()
         {
+            TempData["OrderActive"] = false;
+            TempData.Keep();
             return View();
         }
 

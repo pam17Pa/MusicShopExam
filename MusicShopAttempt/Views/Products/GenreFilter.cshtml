@@ -6,18 +6,11 @@
 @{ ViewData["Title"] = "Index"; }
 
 <h1>Продукти</h1>
-@{bool flag = (bool)TempData["OrderActive"];
-    if (flag)
-    {
-    <a class="nav-link" asp-controller="OrderDetails" asp-action="Index"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a> } 
-    }
 @if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
 {
 <p>
     <a asp-action="Create"><i class="fa fa-2x fa-plus-square" aria-hidden="true"></i></a>
 </p>}
-<div class="alert-success"> @TempData["Message"]</div>
-
 @foreach (var item in Model)
 {
 <div class="card">
@@ -29,10 +22,3 @@
         <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
     </div>
 </div>}
-
-
-
-
-
-
-

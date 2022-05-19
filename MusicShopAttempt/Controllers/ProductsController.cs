@@ -29,7 +29,7 @@ namespace MusicShopAttempt.Controllers
         }
         public async Task<IActionResult> Index()
         {
-
+            TempData.Keep();
             var applicationDbContext = _context.Products
                 .Include(p => p.Singer)
                 .Include(p => p.Genre);
@@ -39,6 +39,8 @@ namespace MusicShopAttempt.Controllers
 
         public async Task<IActionResult> Details(int? id)
         {
+            TempData.Keep();
+
             if (id == null)
             {
                 return NotFound();
@@ -69,7 +71,7 @@ namespace MusicShopAttempt.Controllers
                 SingerNow = product.Singer,
                 GenreId = product.GenreId,
                 GenreNow = product.Genre,
-                QuantityOrder = 1
+                Quantity = 1
             };
             return View(model);
         }
@@ -280,13 +282,13 @@ namespace MusicShopAttempt.Controllers
             return _context.Products.Any(e => e.Id == id);
         }
 
-        //public IActionResult<Product> GenreFilter()
-        //{
-        //    var kpopSongs = _context.Products
-        //        .Include(p => p.Singer)
-        //        .Include(p => p.Genre)
-        //        .Where(p => p.Genre.GenreName == "kpop");
-        //    return kpopSongs.ToList();
-        //}
+        public async Task<IActionResult> GenreFilter()
+        {
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Genre.GenreName == "rock");
+            return View( await products.ToListAsync());
+        }
     }
 }
