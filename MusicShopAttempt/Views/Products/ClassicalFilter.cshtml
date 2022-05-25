@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MusicShopAttempt.Data.Product>
+
+@{
+    ViewData["Title"] = "ClassicalFilter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Класическа музика</h1>
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item"><a asp-action="CdFilter">CD</a></li>
+    <li class="list-group-item"><a asp-action="VinylFilter">Vinyl</a></li>
+    <li class="list-group-item"><a asp-action="internationalFilter">Интернационална музика</a></li>
+    <li class="list-group-item"><a asp-action="ClassicalFilter">Класическа музика</a></li>
+    <li class="list-group-item"><a asp-action="BulgarianFilter">Българска музика</a></li>
+</ul>
+<br />
+
+@foreach (var item in Model)
+{
+    <div class="card">
+        <img class="card-img-top" src="~/images/@item.Picture" alt="Card image">
+        <div class="card-body">
+            <h5 class="card-title">
+                <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
+            </h5>
+            <p class="card-text">@Html.DisplayFor(modelItem => item.Price) лв.</p>
+        </div>
+    </div>}

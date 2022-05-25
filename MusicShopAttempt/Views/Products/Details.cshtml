@@ -20,29 +20,31 @@
         <div class=" d-flex">
             <div>
                 <input type="hidden" asp-for="Id" />
-                <input asp-for="Title" class="form-control" readonly />
-                <input asp-for="Price" class="form-control" readonly />
-                <input asp-for="SingerNow.SingerName" class="form-control" readonly />
-                <input asp-for="Category" class="form-control" readonly />
-                <input asp-for="GenreNow.GenreName" class="form-control" readonly />
-                <input asp-for="Status" class="form-control" readonly />
-                <input asp-for="Holder" class="form-control" readonly />
-                <input asp-for="EntryDate" class="form-control" readonly />
+                <input asp-for="Title" class="form-control rounded " readonly />
+                <input asp-for="Price" class="form-control rounded  " readonly />
+                <input asp-for="SingerNow.SingerName" class="form-control rounded  " readonly />
+                <input asp-for="Category" class="form-control rounded " readonly />
+                <input asp-for="GenreNow.GenreName" class="form-control rounded " readonly />
+                <input asp-for="Status" class="form-control rounded" readonly />
+                <input asp-for="Holder" class="form-control rounded " readonly />
+                <input asp-for="EntryDate" class="form-control rounded " readonly />
             </div>
         </div>
 
         <div>
             <strong class="d-block mt-4 mb-2">Описание</strong>
-            <input asp-for="Description" class="form-control" readonly />
+            <input asp-for="Description" class="form-control rounded " readonly />
         </div>
         <label asp-for="Quantity" class="control-label">Количество</label>
-        <input asp-for="Quantity" type="number" maxlength="4" class="form-control" />
+        <input asp-for="Quantity" type="number" maxlength="4" class="form-control rounded " />
         <span asp-validation-for="Quantity" class="text-danger"></span>
         @if (User.Identity.IsAuthenticated)
         {
-    <input type="submit" value="Добави в кошницата" />
-                    <a class="btn btn-outline-dark" value="Finalise" asp-controller="OrderDetails" asp-action="Index">Поръчай</a>}
-
+            <br />
+            <br />
+            <input type="submit" class="btn btn-info" value="Добави в кошницата" &nbsp;&nbsp;&nbsp; /> 	
+            <a class="btn btn-info" value="Finalise" asp-controller="OrderDetails" asp-action="Index">Поръчай</a>
+         }
     </div>
 </form>
 

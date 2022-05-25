@@ -5,11 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Index</h1>
+<h1>Поръчки</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+
 <table class="table">
     <thead>
         <tr>
@@ -54,5 +52,6 @@
         }
     </tbody>
 </table>
-<a class="btn-light" asp-action="Calculate" asp-route-orderId="@Model.First().OrderId">Поръчай</a>
+<br />
+<a class="btn btn-info" asp-action="Calculate" asp-route-orderId="@Model.First().OrderId">Поръчай &nbsp;&nbsp;&nbsp;</a>
 <a asp-controller="Products" asp-action="Index"><i class="fa fa-2x fa-reply" aria-hidden="true"></i></a>

@@ -30,6 +30,8 @@ namespace MusicShopAttempt.Data
         public int GenreId { get; set; }
         public Genre Genre { get; set; }
 
+        public int Quantity { get; set; }
+
         public ICollection<OrderDetails> OrderDetails { get; set; }
     }
 }

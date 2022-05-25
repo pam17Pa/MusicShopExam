@@ -28,7 +28,7 @@ namespace MusicShopAttempt.Controllers
         // GET: OrderDetails
         public async Task<IActionResult> Index()
         {
-            TempData.Keep();
+            TempData.Keep("OrderActive");
 
             var orderId = GetOrderId();
             if (orderId == null)
@@ -73,7 +73,7 @@ namespace MusicShopAttempt.Controllers
             HttpContext.Session.Remove("OrderSession");
             TempData["OrderActive"] = false;
 
-            TempData["Message"] = "Успешно поръчахте на стойност " + sum.ToString();
+            TempData["Message"] = "Успешно поръчахте на стойност " + sum.ToString() + "лв.";
             return RedirectToAction("Index", "Products");
         }
         [NonAction]
@@ -88,7 +88,7 @@ namespace MusicShopAttempt.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductVM product)
         {
-            TempData.Keep();
+            TempData.Keep("OrderActive");
 
             if (!ModelState.IsValid)
             {

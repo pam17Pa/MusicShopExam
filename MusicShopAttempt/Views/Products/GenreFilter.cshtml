@@ -1,16 +1,18 @@
 ﻿@model IEnumerable<MusicShopAttempt.Data.Product>
-@inject SignInManager<User> signInManager;
-@inject UserManager<User> userInManager;
-@using MusicShopAttempt.Data;
-@using Microsoft.AspNetCore.Identity;
-@{ ViewData["Title"] = "Index"; }
 
-<h1>Продукти</h1>
-@if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
-{
-<p>
-    <a asp-action="Create"><i class="fa fa-2x fa-plus-square" aria-hidden="true"></i></a>
-</p>}
+@{
+    ViewData["Title"] = "GenreFilter";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Филтриране по жанр</h1>
+
+<form asp-controller="Products" asp-action="GenreFilter" method="get">
+    <p>
+        <input type="text" name="searchString" value="@ViewData["SearchName"]" />
+        <input type="submit" value="Търси" />
+    </p>
+</form>
 @foreach (var item in Model)
 {
 <div class="card">
@@ -19,6 +21,6 @@
         <h5 class="card-title">
             <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
         </h5>
-        <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+        <p class="card-text">@Html.DisplayFor(modelItem => item.Price) лв.</p>
     </div>
 </div>}

@@ -9,15 +9,27 @@
 @{bool flag = (bool)TempData["OrderActive"];
     if (flag)
     {
-    <a class="nav-link" asp-controller="OrderDetails" asp-action="Index"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a> } 
-    }
+    <a class="nav-link" asp-controller="OrderDetails" asp-action="Index"><i class="fa fa-2x fa-shopping-bag" aria-hidden="true"></i></a> } 
+}
+
 @if (signInManager.IsSignedIn(User) && User.IsInRole(Role.Admin.ToString()))
 {
 <p>
     <a asp-action="Create"><i class="fa fa-2x fa-plus-square" aria-hidden="true"></i></a>
-</p>}
+</p>
+<br />
+}
+
 <div class="alert-success"> @TempData["Message"]</div>
 
+<ul class="list-group list-group-horizontal">
+    <li class="list-group-item"><a asp-action="CdFilter">CD</a></li>
+    <li class="list-group-item"><a asp-action="VinylFilter">Vinyl</a></li>
+    <li class="list-group-item"><a asp-action="internationalFilter">Интернационална музика</a></li>
+    <li class="list-group-item"><a asp-action="ClassicalFilter">Класическа музика</a></li>
+    <li class="list-group-item"><a asp-action="BulgarianFilter">Българска музика</a></li>
+</ul>
+<br />
 @foreach (var item in Model)
 {
 <div class="card">
@@ -26,7 +38,7 @@
         <h5 class="card-title">
             <a asp-action="Details" asp-route-id="@item.Id">@Html.DisplayFor(modelItem => item.Title)</a>
         </h5>
-        <p class="card-text">@Html.DisplayFor(modelItem => item.Price)</p>
+        <p class="card-text">@Html.DisplayFor(modelItem => item.Price) лв.</p>
     </div>
 </div>}
 

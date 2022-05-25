@@ -379,3 +379,9 @@ C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razo
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ManageNav.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Areas\Identity\Pages\Account\Manage\_ViewImports.cshtml.g.cs
 C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\GenreFilter.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\SingerFilter.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\CdFilter.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\VinylFilter.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\InternationalFilter.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\ClassicalFilter.cshtml.g.cs
+C:\Users\Poli_\source\repos\MusicShopExam\MusicShopAttempt\obj\Debug\net5.0\Razor\Views\Products\BulgarianFilter.cshtml.g.cs

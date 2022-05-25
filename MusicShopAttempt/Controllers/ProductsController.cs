@@ -27,19 +27,24 @@ namespace MusicShopAttempt.Controllers
             _signInManager = signInManager;
             _iWebHost = webHostEnvironment;
         }
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
+        }
         public async Task<IActionResult> Index()
         {
-            TempData.Keep();
+            TempData.Keep("OrderActive");
             var applicationDbContext = _context.Products
                 .Include(p => p.Singer)
                 .Include(p => p.Genre);
             return View(await applicationDbContext.ToListAsync());
-
         }
 
         public async Task<IActionResult> Details(int? id)
         {
-            TempData.Keep();
+            TempData.Keep("OrderActive");
 
             if (id == null)
             {
@@ -71,11 +76,12 @@ namespace MusicShopAttempt.Controllers
                 SingerNow = product.Singer,
                 GenreId = product.GenreId,
                 GenreNow = product.Genre,
-                Quantity = 1
+                Quantity = product.Quantity
             };
             return View(model);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ProductVM model = new ProductVM();
@@ -95,7 +101,7 @@ namespace MusicShopAttempt.Controllers
         }
 
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Title,Quantity,Description,Picture,PictureFile,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product)
         {
@@ -146,6 +152,7 @@ namespace MusicShopAttempt.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -189,6 +196,7 @@ namespace MusicShopAttempt.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Quantity,Description,PictureFile,Picture,Price,EntryDate,Status,Promo,Holder,Category,SingerId,GenreId")] ProductVM product, IFormFile updateImage)
         {
@@ -248,6 +256,7 @@ namespace MusicShopAttempt.Controllers
             return RedirectToAction("Details", new { id = id });
         }
 
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -268,6 +277,7 @@ namespace MusicShopAttempt.Controllers
         }
 
         [HttpPost, ActionName("Delete")]
+        [Authorize(Roles = "Admin")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
@@ -282,13 +292,63 @@ namespace MusicShopAttempt.Controllers
             return _context.Products.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> GenreFilter()
+        public async Task<IActionResult> GenreFilter(string searchString)
+        {
+            ViewData["SearchName"] = searchString;
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Genre.GenreName.Contains(searchString));
+            return View( await products.ToListAsync());
+        }
+        public async Task<IActionResult> SingerFilter(string searchString)
+        {
+            ViewData["SearchName"] = searchString;
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Singer.SingerName.Contains(searchString));
+            return View(await products.ToListAsync());
+        }
+        public async Task<IActionResult> CdFilter()
         {
             var products = _context.Products
                 .Include(product => product.Singer)
                 .Include(product => product.Genre)
-                .Where(product => product.Genre.GenreName == "rock");
-            return View( await products.ToListAsync());
+                .Where(product => product.Holder.Equals(HolderType.CD));
+            return View(await products.ToListAsync());
+        }
+        public async Task<IActionResult> VinylFilter()
+        {
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Holder.Equals(HolderType.Vinyl));
+            return View(await products.ToListAsync());
+        }
+        public async Task<IActionResult> InternationalFilter()
+        {
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Category.Equals(CategoryType.International));
+            return View(await products.ToListAsync());
+        }
+        public async Task<IActionResult> ClassicalFilter()
+        {
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Category.Equals(CategoryType.Classical));
+            return View(await products.ToListAsync());
+        }
+        public async Task<IActionResult> BulgarianFilter()
+        {
+            var products = _context.Products
+                .Include(product => product.Singer)
+                .Include(product => product.Genre)
+                .Where(product => product.Category.Equals(CategoryType.Bulgarian));
+            return View(await products.ToListAsync());
         }
     }
 }
