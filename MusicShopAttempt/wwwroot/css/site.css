@@ -73,28 +73,33 @@ body {
     line-height: 60px; /* Vertically center the text there */
 }
 #leftBanner {
-    width: 8%;
-    height: 1000px;
-    object-fit: cover;
-    margin-right: 2%;
-    margin-left: 2%;
-    margin-bottom: 2%;
+    width: 11%;
+    height: 900px;
+    object-fit: fill;
+    margin-right: 1%;
+    margin-left: 1%;
+    margin-bottom: 1%;
     float: left;
     position: relative;
     -webkit-animation: mover 2s infinite alternate;
     animation: mover 2s infinite alternate;
 }
 #rightBanner {
-    width: 8%;
-    height: 1000px;
-    object-fit: cover;
-    margin-left: 2%;
-    margin-right: 2%;
-    margin-bottom: 2%;
+    width: 11%;
+    height: 900px;
+    object-fit: fill;
+    margin-left: 1%;
+    margin-right: 1%;
+    margin-bottom: 1%;
     float: right;
     position: relative;
     -webkit-animation: mover 2s infinite alternate;
     animation: mover 2s infinite alternate;
+}
+#logo{
+    object-fit:fill;
+    height:67px;
+    width:170px
 }
 @-webkit-keyframes mover {
     0% {

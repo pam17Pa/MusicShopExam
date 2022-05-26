@@ -17,7 +17,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Хармония</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img  id ="logo"src="~/images/Logo.png" /> </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -40,7 +40,8 @@
                         {
             <li class="nav-item">
                 <a class="nav-link" asp-area="" asp-controller="Orders" asp-action="Index">Поръчки</a>
-            </li>}
+            </li>
+}
                     </ul>
                     <partial name="_LoginPartial" />
                 </div>
@@ -48,17 +49,24 @@
         </nav>
     </header>
     <div>
-        <img id="leftBanner" src="~/images/bannerLeft.jpeg" />
-        <img id="rightBanner" src="~/images/bannerRight.jpg" />
+        <img id="leftBanner" src="~/images/banner1.jpg" />
+        <img id="rightBanner" src="~/images/banner2.jpg" />
         <div class="container">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>
         </div>
     </div>
+
+
+    <br />
+    <br />
+    <br />
+    <br />
+
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2022 - Хармония
+            &copy; 2022 - Хармония &nbsp;&nbsp;&nbsp; <a href="https://twitter.com/ateezofficial?lang=bg"><i class="fa-brands fa-2x fa-twitter bg-info"></i></a> &nbsp;&nbsp;&nbsp; <a href="https://www.instagram.com/ateez_official_/?hl=bg"><i class="fa-brands fa-2x fa-instagram bg-info"></i></a> &nbsp;&nbsp;&nbsp; <a href="https://open.spotify.com/artist/68KmkJeZGfwe1OUaivBa2L"><i class="fa-brands fa-2x fa-spotify bg-info"></i></a>
         </div>
     </footer>
 
